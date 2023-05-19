@@ -1,15 +1,9 @@
 #include <stdio.h>
-#include <string.h>
+#include <stdlib.h>
 
-int main()
-{
-    float a, b, c, result;
-    char op;
-
-    printf("Enter two binary operations (ie: a + b * c):\n");
-    scanf("%f %c %f %c %f", &a, &op1, &b, &op2, &c);
-
-	// Decide on order operations should be performed
+/* Performs one binary operation, returns the result */
+float bin_op(float a, float b, char op){
+    float result;
 
     switch(op){
         case '+':
@@ -26,12 +20,28 @@ int main()
                 printf("Error: division by zero\n");
                 return 1;
             }
-            result = a / b;
-            break;
+            else {
+                result = a / b;
+                break;
+            }
         default:
             printf("Error: invalid binary operation\n");
-            return 1;
+            exit(-1);
     }
+
+    return result;
+}
+
+/* A minimal command line calculator */
+int main()
+{
+    float a, b, result;
+    char op;
+
+    printf("Enter two binary operations (ie: a + b):\n");
+    scanf("%f %s %f", &a, &op, &b);
+
+    result = bin_op(a, b, op);
 
     printf("= %.2f\n", result);
 
