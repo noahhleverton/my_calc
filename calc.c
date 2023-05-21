@@ -1,9 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <assert.h>
+#include <string.h>
 
-/* Performs one binary operation, returns the result */
-float bin_op(float a, float b, char op){
-    float result;
+/* A minimal command line calculator */
+int main()
+{
+    float a, b, result;
+    char op;
+
+    printf("Enter two binary operations (ie: a + b):\n");
+    scanf("%f %s %f", &a, &op, &b);
+
+    /* Error handling */
+    if ((b == 0.0) && (strcmp(&op, "/") == 0)){
+        printf("Division by zero!\n");
+        exit(1);
+    }
 
     switch(op){
         case '+':
@@ -16,32 +29,12 @@ float bin_op(float a, float b, char op){
             result = a * b;
             break;
         case '/':
-            if (b == 0){
-                printf("Error: division by zero\n");
-                return 1;
-            }
-            else {
-                result = a / b;
-                break;
-            }
+            result = a / b;
+            break;
         default:
-            printf("Error: invalid binary operation\n");
-            exit(-1);
+            printf("Invalid operator\n");
+            return 1;
     }
-
-    return result;
-}
-
-/* A minimal command line calculator */
-int main()
-{
-    float a, b, result;
-    char op;
-
-    printf("Enter two binary operations (ie: a + b):\n");
-    scanf("%f %s %f", &a, &op, &b);
-
-    result = bin_op(a, b, op);
 
     printf("= %.2f\n", result);
 
