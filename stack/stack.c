@@ -50,7 +50,7 @@ void print_stack(){
 void push(int x){
     if (check_full()){
         printf("Error: No more room in stack\n");
-        exit(-1);
+        exit(EXIT_FAILURE);
     }
     else {
         *(top++) = x;  
