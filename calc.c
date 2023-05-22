@@ -15,7 +15,7 @@ int main()
     /* Error handling */
     if ((b == 0.0) && (strcmp(&op, "/") == 0)){
         printf("Division by zero!\n");
-        exit(1);
+        exit(-1);
     }
 
     switch(op){
@@ -33,7 +33,7 @@ int main()
             break;
         default:
             printf("Invalid operator\n");
-            return 1;
+            exit(-1);
     }
 
     printf("= %.2f\n", result);
